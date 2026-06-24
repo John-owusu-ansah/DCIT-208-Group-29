@@ -38,3 +38,11 @@ Group 29 – LUXBYNESS
 University of Ghana
 
 DCIT 208 Software Engineering Project
+
+# LUXBYNESS
+
+## Project Summary
+LUXBYNESS is a modern salon website that allows customers to book appointments online, view services, and communicate with salon staff.
+
+## Client Problem Statement
+The client currently manages appointments manually, leading to scheduling conflicts and difficulty tracking bookings. The proposed website will provide an efficient online booking system and improve customer experience.
