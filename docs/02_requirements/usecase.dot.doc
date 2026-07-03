@@ -1,0 +1,60 @@
+digraph UseCaseDiagram {
+  rankdir=LR;
+  fontname="Helvetica";
+  node [fontname="Helvetica", fontsize=11];
+  edge [fontname="Helvetica", fontsize=9];
+
+  node [shape=plaintext];
+  Client [label="Client", shape=box, style="rounded", width=1.2, height=0.5, penwidth=1.5];
+  Guest [label="Guest\n(unregistered)", shape=box, style="rounded,dashed", width=1.2, height=0.5, penwidth=1.5];
+  Staff [label="Salon Staff", shape=box, style="rounded", width=1.2, height=0.5, penwidth=1.5];
+  Admin [label="Salon Admin\n(Ms. Vanessa)", shape=box, style="rounded", width=1.2, height=0.6, penwidth=1.5];
+  NotifyGateway [label="WhatsApp/SMS/\nEmail Gateway\n(external)", shape=box, style="rounded,dashed", width=1.3, height=0.7];
+  PayGateway [label="Payment Gateway\n(MoMo / Card)\n(external)", shape=box, style="rounded,dashed", width=1.3, height=0.6];
+
+  subgraph cluster_system {
+    label="Luxebyness Salon Booking System";
+    fontsize=13;
+    style=rounded;
+    color=black;
+    node [shape=ellipse, style=filled, fillcolor="#EAF2FB", width=2.3, height=0.7];
+
+    UC1 [label="Register / Login"];
+    UC2 [label="Browse Services\n& Stylists"];
+    UC3 [label="Book Appointment"];
+    UC4 [label="Reschedule /\nCancel Appointment"];
+    UC5 [label="View Booking\nHistory"];
+    UC6 [label="Rate & Review\nService"];
+    UC7 [label="Manage Bookings\n(Calendar View)"];
+    UC8 [label="Manage Services\n& Pricing"];
+    UC9 [label="Manage Staff\nSchedule"];
+    UC10 [label="Receive\nNotifications"];
+    UC11 [label="Book as Guest"];
+    UC12 [label="Pay Deposit"];
+  }
+
+  Client -> UC1;
+  Client -> UC2;
+  Client -> UC3;
+  Client -> UC4;
+  Client -> UC5;
+  Client -> UC6;
+
+  Guest -> UC11;
+  Guest -> UC2;
+
+  Staff -> UC7;
+  Staff -> UC10;
+
+  Admin -> UC8;
+  Admin -> UC9;
+  Admin -> UC7;
+
+  UC3 -> UC10 [label="<<include>>", style=dashed, arrowhead=vee];
+  UC4 -> UC10 [label="<<include>>", style=dashed, arrowhead=vee];
+  UC3 -> UC12 [label="<<include>>", style=dashed, arrowhead=vee];
+  UC11 -> UC12 [label="<<include>>", style=dashed, arrowhead=vee];
+  UC11 -> UC10 [label="<<include>>", style=dashed, arrowhead=vee];
+  UC10 -> NotifyGateway [label="<<uses>>", style=dashed];
+  UC12 -> PayGateway [label="<<uses>>", style=dashed];
+}
